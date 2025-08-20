@@ -5,7 +5,7 @@ const About = () => {
   const stats = [
     { icon: Users, value: '500+', label: 'Attendees' },
     { icon: Camera, value: '50+', label: 'Designers' },
-    { icon: Clock, value: '3', label: 'Days' }
+    { icon: Clock, value: '1', label: 'Day' }
   ];
 
   return (
@@ -18,10 +18,10 @@ const About = () => {
               About Yoda Ratna Awards
             </h2>
             <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-              Yoda Ratna Awards 2025 is a prestigious celebration of courage, creativity, and contribution — dedicated to honoring India’s real heroes, inspiring women, and emerging leaders. Organized by BBR Foundation, this grand event recognizes bravery beyond the battlefield, the silent strength of families, and the innovation of women entrepreneurs.
+              Yoda Ratna Awards 2025 is a prestigious celebration of courage, creativity, and contribution — dedicated to honoring India's real heroes, inspiring women, and emerging leaders. Organized by BBR Foundation, this grand event recognizes bravery beyond the battlefield, the silent strength of families, and the innovation of women entrepreneurs.
             </p>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              This three-day celebration brings together military veterans, social contributors, fashion icons, and visionary talents in a powerful convergence of honor and opportunity. From the Yoda Shakti Samman for ex-army personnel, Yoda Raksha Ratna for army wives and mothers, to Yoda Veera Naari for fearless women entrepreneurs — every award is a salute to the spirit of service, sacrifice, and leadership.
+              This grand celebration brings together military veterans, social contributors, fashion icons, and visionary talents in a powerful gathering of honor and opportunity. Yoda Shakti Samman for ex-army personnel, and Yoda Raksha Ratna for army wives and mothers, to Yoda Veera Naari for fearless women entrepreneurs — each award honors the spirit of service, sacrifice, and leadership.
             </p>
             <p className="text-gray-400 mb-4 leading-relaxed">
               With awards, grooming sessions, makeup artistry for military-themed storytelling, and high-impact media coverage — Yoda Ratna Awards is not just an event, but a movement. It empowers participants with visibility, branding, recognition, and pathways into films, fashion, and beyond.
@@ -52,7 +52,7 @@ const About = () => {
           <div className="animate-on-scroll relative">
             <div className="relative overflow-hidden rounded-2xl">
               <img 
-                src="/images/imag.png"
+                src="/images/girl.png"
                 alt="Yoda Ratna Awards"
                 className="w-full max-h-[600px] object-contain hover:scale-105 transition-transform duration-700"
               />

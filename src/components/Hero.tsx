@@ -10,7 +10,7 @@ const Hero = () => {
   });
 
   useEffect(() => {
-    const eventDate = new Date('2025-03-15T00:00:00'); // fixed date
+    const eventDate = new Date('2025-08-23T00:00:00'); // updated date
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -81,11 +81,11 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-white text-sm mb-8">
           <div className="flex items-center gap-2">
             <Calendar className="text-pink-400" />
-            <span>March 15–1@7, 2025</span>
+            <span>August 23, 2025</span>
           </div>
           <div className="flex items-center gap-2">
             <MapPin className="text-yellow-400" />
-            <span>Hyderabad, Telangana</span>
+            <span>Hitex, Hyderabad, Telangana</span>
           </div>
         </div>
 

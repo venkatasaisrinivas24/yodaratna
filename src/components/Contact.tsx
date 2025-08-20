@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Clock, Bell, Phone, Globe } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [contactForm, setContactForm] = useState({
@@ -18,27 +19,43 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    const templateParams = {
+      fullName: contactForm.name,
+      email: contactForm.email,
+      subject: contactForm.subject,
+      message: contactForm.message
+    };
+
+    emailjs.send(
+      'service_hcfhpph',         // <-- NEW Service ID
+      'template_3mml45f',        // Contact Us Template ID
+      templateParams,
+      'LmwRMvkKI1kpJdxH0'        // Public Key
+    )
+    .then((response) => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      console.log('Contact form submitted:', contactForm);
-
       setTimeout(() => {
         setIsSubmitted(false);
         setContactForm({ name: '', email: '', subject: '', message: '' });
       }, 3000);
-    }, 1500);
+    })
+    .catch((error) => {
+      setIsSubmitting(false);
+      alert('Failed to send message. Please try again.');
+      console.error('EmailJS error:', error);
+    });
   };
 
   const contactInfo = [
     {
       icon: MapPin,
       title: 'Location',
-      details: ['Hyderabad, Telangana, India', 'The City of Pearls']
+      details: ['Hyderabad, Telangana, India', 'Hitex']
     },
     {
       icon: Mail,
@@ -53,7 +70,7 @@ const Contact = () => {
     {
       icon: Clock,
       title: 'Event Hours',
-      details: ['March 15-17, 2024', '9:00 AM - 10:00 PM', 'Registration: 8:00 AM daily']
+      details: ['August 23, 2025', '9:00 AM - 1:00 PM', 'Registration: 9:00 AM']
     },
     {
       icon: Globe,
@@ -112,6 +129,17 @@ const Contact = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
+            </div>
+            {/* Google Maps Link */}
+            <div className="mt-4 text-center">
+              <a
+                href="https://maps.app.goo.gl/ZwSWA4GPz8kf2gvx8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-pink-500 hover:text-yellow-400 font-semibold underline text-lg transition-colors duration-300"
+              >
+                View on Google Maps
+              </a>
             </div>
           </div>
 
@@ -187,15 +215,52 @@ const Contact = () => {
         {/* Footer */}
         <div className="mt-20 pt-8 border-t border-pink-500/30 text-center">
           <div className="flex justify-center space-x-6 mb-6">
-            {['Instagram', 'Twitter', 'LinkedIn', 'YouTube'].map((social) => (
-              <a
-                key={social}
-                href=" #"
-                className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
-              >
-                {social}
-              </a>
-            ))}
+            <a
+              href="https://www.instagram.com/yodaratna/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+              aria-label="Instagram"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3.75h9A3.75 3.75 0 0120.25 7.5v9a3.75 3.75 0 01-3.75 3.75h-9A3.75 3.75 0 013.75 16.5v-9A3.75 3.75 0 017.5 3.75z" />
+                <circle cx="12" cy="12" r="3.5" />
+                <circle cx="17.5" cy="6.5" r="1" />
+              </svg>
+            </a>
+            <a
+              href="https://x.com/yodaratna8877"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+              aria-label="X"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.75 4.75l14.5 14.5M19.25 4.75l-14.5 14.5" />
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com/yodaratna"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+              aria-label="Facebook"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-7 h-7">
+                <path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0" />
+              </svg>
+            </a>
+            <a
+              href="https://www.youtube.com/@yodaratna"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+              aria-label="YouTube"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-7 h-7">
+                <path d="M23.498 6.186a2.994 2.994 0 00-2.112-2.12C19.204 3.5 12 3.5 12 3.5s-7.204 0-9.386.566a2.994 2.994 0 00-2.112 2.12C0 8.374 0 12 0 12s0 3.626.502 5.814a2.994 2.994 0 002.112 2.12C4.796 20.5 12 20.5 12 20.5s7.204 0 9.386-.566a2.994 2.994 0 002.112-2.12C24 15.626 24 12 24 12s0-3.626-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
           </div>
           <p className="text-gray-500">
             © 2025 Yoda Ratna Awards . All rights reserved. | Privacy Policy | Terms of Service

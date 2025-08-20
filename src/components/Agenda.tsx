@@ -18,8 +18,8 @@ const Agenda = () => {
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Brand Promotion Benefits */}
-            <div className="space-y-6">
-              <div className="bg-black/50 backdrop-blur-sm border border-pink-500/30 rounded-2xl p-8">
+            <div className="flex flex-row overflow-x-auto gap-6 pb-4 -mx-4 px-4 snap-x snap-mandatory md:flex-col md:overflow-x-visible md:px-0 md:mx-0">
+              <div className="bg-black/50 backdrop-blur-sm border border-pink-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">Brand Spotlight</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">
@@ -34,7 +34,7 @@ const Agenda = () => {
                 </div>
               </div>
 
-              <div className="bg-black/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8">
+              <div className="bg-black/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">Prestigious Association</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">
@@ -49,7 +49,7 @@ const Agenda = () => {
                 </div>
               </div>
 
-              <div className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-8">
+              <div className="bg-black/50 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">Targeted Exposure</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">
@@ -64,7 +64,7 @@ const Agenda = () => {
                 </div>
               </div>
 
-              <div className="bg-black/50 backdrop-blur-sm border border-green-500/30 rounded-2xl p-8">
+              <div className="bg-black/50 backdrop-blur-sm border border-green-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">Massive Media Reach</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">
@@ -81,8 +81,8 @@ const Agenda = () => {
             </div>
 
             {/* Additional Benefits */}
-            <div className="space-y-6">
-              <div className="bg-black/50 backdrop-blur-sm border border-yellow-500/30 rounded-2xl p-8">
+            <div className="flex flex-row overflow-x-auto gap-6 pb-4 -mx-4 px-4 snap-x snap-mandatory md:flex-col md:overflow-x-visible md:px-0 md:mx-0">
+              <div className="bg-black/50 backdrop-blur-sm border border-yellow-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">High-Value Networking</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">
@@ -97,7 +97,7 @@ const Agenda = () => {
                 </div>
               </div>
 
-              <div className="bg-black/50 backdrop-blur-sm border border-red-500/30 rounded-2xl p-8">
+              <div className="bg-black/50 backdrop-blur-sm border border-red-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">Trust & Credibility Boost</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">
@@ -112,7 +112,7 @@ const Agenda = () => {
                 </div>
               </div>
 
-              <div className="bg-black/50 backdrop-blur-sm border border-indigo-500/30 rounded-2xl p-8">
+              <div className="bg-black/50 backdrop-blur-sm border border-indigo-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">Product/Service Showcase</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">
@@ -127,7 +127,7 @@ const Agenda = () => {
                 </div>
               </div>
 
-              <div className="bg-black/50 backdrop-blur-sm border border-pink-500/30 rounded-2xl p-8">
+              <div className="bg-black/50 backdrop-blur-sm border border-pink-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">On-Stage Recognition</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">
@@ -142,7 +142,7 @@ const Agenda = () => {
                 </div>
               </div>
 
-              <div className="bg-black/50 backdrop-blur-sm border border-cyan-500/30 rounded-2xl p-8">
+              <div className="bg-black/50 backdrop-blur-sm border border-cyan-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">Social Media Buzz</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">
@@ -157,7 +157,7 @@ const Agenda = () => {
                 </div>
               </div>
 
-              <div className="bg-black/50 backdrop-blur-sm border border-emerald-500/30 rounded-2xl p-8">
+              <div className="bg-black/50 backdrop-blur-sm border border-emerald-500/30 rounded-2xl p-8 min-w-[85vw] snap-center md:min-w-0">
                 <h3 className="text-2xl font-bold text-white mb-6">Lasting Post-Event Impact</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 group">

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Events from '../components/Events';
 import Sponsors from '../components/Sponsors';
-import Speakers from '../components/Speakers';
+import Founders from '../components/Speakers';
 import Agenda from '../components/Agenda';
 import Registration from '../components/Registration';
 import Contact from '../components/Contact';
@@ -54,17 +53,16 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-purple-950 to-black text-white overflow-x-hidden scroll-smooth">
-      <Navigation />
+    <>
       <Hero />
       <About />
       <Events />
       <Sponsors />
-      <Speakers />
+      <Founders />
       <Agenda />
       <Registration />
       <Contact />
-    </div>
+    </>
   );
 };
 

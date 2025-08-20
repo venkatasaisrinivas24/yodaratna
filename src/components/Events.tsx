@@ -64,11 +64,11 @@ const AwardCategories = () => {
           </p>
         </div>
 
-        <div className="space-y-16">
+        <div className="flex flex-row overflow-x-auto gap-6 pb-4 -mx-4 px-4 snap-x snap-mandatory md:grid md:grid-cols-2 md:gap-10 md:overflow-x-visible md:px-0 md:mx-0">
           {categories.map((category, index) => (
             <div
               key={category.id}
-              className="bg-black/50 backdrop-blur-sm border border-pink-500/30 rounded-2xl p-8 md:p-10 shadow-xl animate-on-scroll hover:border-pink-500/60 transition-all duration-300 hover:scale-105"
+              className="bg-black/50 backdrop-blur-sm border border-pink-500/30 rounded-2xl p-8 md:p-10 shadow-xl animate-on-scroll hover:border-pink-500/60 transition-all duration-300 hover:scale-105 min-w-[85vw] snap-center md:min-w-0"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               <div className="text-center md:text-left">

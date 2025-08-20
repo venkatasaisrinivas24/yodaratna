@@ -74,88 +74,7 @@ const Sponsors = () => {
     <section id="sponsors" className="py-20 px-6 bg-gradient-to-b from-black to-purple-950/30">
       <div className="container mx-auto max-w-7xl">
         {/* Title */}
-        <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent">
-            SPONSOR CATEGORIES
-          </h2>
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-            Join us as a sponsor and be part of the prestigious Yoda Ratna Awards
-          </p>
-        </div>
-
-        {/* Sponsor Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {sponsorCategories.map((category, index) => (
-            <div
-              key={category.id}
-              className={`relative flex flex-col justify-between h-full bg-black/50 backdrop-blur-sm border ${category.borderColor} rounded-2xl shadow-xl animate-on-scroll hover:scale-105 transition-all duration-300 ${
-                category.isPremium ? 'ring-2 ring-pink-500/50' : ''
-              }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="flex flex-col justify-between h-full p-6">
-                {category.isPremium && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                    <div className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-bold">
-                      PREMIUM
-                    </div>
-                  </div>
-                )}
-
-                <div>
-                  <div className="mb-4 w-full h-40 flex items-center justify-center bg-black rounded-xl">
-                    <img
-                      src={category.image}
-                      alt={`${category.title} Logo`}
-                      className="max-h-full max-w-full object-contain"
-                    />
-                  </div>
-
-                  <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-pink-400 via-purple-400 to-yellow-400 bg-clip-text text-transparent">
-                      {category.title}
-                    </h3>
-                    <div className="text-3xl font-bold text-yellow-400 mb-4">
-                      {category.price}
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    {category.features.map((feature, featureIndex) => {
-                      const FeatureIcon = feature.icon;
-                      return (
-                        <div key={featureIndex} className="flex items-start gap-3 group">
-                          <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                            <FeatureIcon className="text-white" size={16} />
-                          </div>
-                          <div>
-                            <p className="text-white font-semibold text-sm mb-1">
-                              {feature.text}
-                            </p>
-                            <p className="text-gray-400 text-xs leading-relaxed">
-                              {feature.description}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div className="mt-8 text-center">
-                  <a
-                    href={`https://${category.website}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`block bg-gradient-to-r ${category.color} text-white text-center px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-transform duration-300`}
-                  >
-                    Visit Website
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Sponsor Categories section removed as per request */}
 
         {/* Additional Info */}
         <div className="mt-16 text-center">
@@ -201,34 +120,31 @@ const Sponsors = () => {
             ASSOCIATE & BRAND PARTNERS
           </h2>
 
-<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-  {[
-    'i1.png',
-    '2.png',
-    '3.png',
-    '4.png',
-    '5.png',
-    '6.png',
-    '7.png',
-    '8.png',
-    '9.png',
-    '10.png'
-  ].map((filename, index) => (
-    <div
-      key={index}
-      className="bg-white rounded-2xl shadow-lg p-4 flex items-center justify-center h-40 hover:scale-105 transition-transform duration-300"
-    >
-      <img
-        src={`/images/${filename}`}
-        alt={`Brand ${index + 1}`}
-        className="max-h-full max-w-full object-contain"
-      />
-    </div>
-  ))}
-</div>
-
-
-
+          <div className="flex flex-row overflow-x-auto gap-6 pb-4 -mx-4 px-4 snap-x snap-mandatory sm:gap-8 md:grid md:grid-cols-4 lg:grid-cols-5 md:gap-6 md:overflow-x-visible md:px-0 md:mx-0">
+            {[
+              'i1.png',
+              '2.png',
+              '3.png',
+              '4.png',
+              '5.png',
+              '6.png',
+              '7.png',
+              '8.png',
+              '9.png',
+              '10.png'
+            ].map((filename, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl shadow-lg p-4 flex items-center justify-center h-40 hover:scale-105 transition-transform duration-300 min-w-[70vw] snap-center md:min-w-0"
+              >
+                <img
+                  src={`/images/${filename}`}
+                  alt={`Brand ${index + 1}`}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

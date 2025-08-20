@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const Registration = () => {
   const [activeTab, setActiveTab] = useState('model');
@@ -11,17 +12,51 @@ const Registration = () => {
     age: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // For better user experience
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsLoading(true); // Show loading feedback
+
+    // --- THIS IS THE CRITICAL FIX ---
+    // We must tell the template which type of registration this is.
+    // The email template is waiting for a variable called "registrationType".
+    const templateParams = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      age: formData.age,
+      // This line was missing. It adds the registration type to the data being sent.
+      registrationType: activeTab === 'model' ? 'Model' : 'Makeup Artist'
+    };
+    // ------------------------------------
+
+    emailjs.send(
+      'service_hcfhpph',         // Your Service ID
+      'template_31z6xyp',        // Your Template ID
+      templateParams,            // The complete data, including registrationType
+      'LmwRMvkKI1kpJdxH0'        // Your Public Key
+    )
+    .then((response) => {
+      console.log('SUCCESS!', response.status, response.text);
+      setIsSubmitted(true);
+      setFormData({ firstName: '', lastName: '', email: '', phone: '', age: '' }); // Clear the form
+    })
+    .catch((error) => {
+      alert('Failed to send registration. Please check the console for errors.');
+      console.error('EmailJS error:', error);
+    })
+    .finally(() => {
+        setIsLoading(false); // Stop loading
+    });
   };
 
-  const handleTabChange = (tab) => {
+  const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     setFormData({
       firstName: '',
@@ -72,69 +107,46 @@ const Registration = () => {
                 <input name="email" placeholder="Email Address" value={formData.email} onChange={handleInputChange} required type="email" className="w-full bg-black/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-pink-500 focus:outline-none transition-colors duration-300" />
                 <input name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleInputChange} required className="w-full bg-black/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-pink-500 focus:outline-none transition-colors duration-300" />
                 <input name="age" placeholder="Age" value={formData.age} onChange={handleInputChange} required type="number" className="w-full bg-black/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-pink-500 focus:outline-none transition-colors duration-300" />
-                <button type="submit" className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-purple-600 hover:to-pink-500 transition-all duration-300">
-                  {activeTab === 'model' ? 'Register as Model' : 'Register for Make-up'}
+                <button type="submit" disabled={isLoading} className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-purple-600 hover:to-pink-500 transition-all duration-300 disabled:opacity-60">
+                   {isLoading ? 'Submitting...' : (activeTab === 'model' ? 'Register as Model' : 'Register for Make-up')}
                 </button>
               </form>
             </div>
 
             <div className="lg:w-1/3 bg-gradient-to-b from-blue-900 to-black p-6 rounded-xl shadow-md flex flex-col justify-between">
               {activeTab === 'model' ? (
-                <>
                   <div>
                     <h3 className="text-yellow-400 text-2xl font-bold mb-2">Model Registration</h3>
-                    <p className="text-white text-lg mb-4">Unlock Your Path to Stardom!</p>
-                    <h4 className="text-yellow-400 font-semibold mb-2">Program Benefits:</h4>
-                    <ul className="list-disc list-inside text-sm text-white space-y-1">
-                      <li>Trophy & Recognition</li>
-                      <li>Choreography Sessions</li>
-                      <li>Grooming & Personality Development</li>
-                      <li>Certificate of Participation</li>
-                    </ul>
-                    <h4 className="text-yellow-300 mt-4 font-semibold mb-2">Additional Exclusive Benefits:</h4>
-                    <ul className="list-disc list-inside text-sm text-white space-y-1">
-                      <li>Ads & Brand Shoot Opportunities</li>
-                      <li>Movies, Web Series & Albums</li>
-                      <li>Media Coverage</li>
-                      <li>Social Media Monetization</li>
+                    <p className="text-white text-lg mb-4 font-semibold">Yoda Ratna Event Benefits</p>
+                    <ul className="list-none text-white space-y-3 text-sm">
+                      <li><span className="font-bold text-pink-400">•</span> Registered models will get a chance to participate in an <span className="font-bold text-yellow-300">exclusive Ramp Walk</span> during the Yoda Ratna event.</li>
+                      <li><span className="font-bold text-pink-400">•</span> Receive <span className="font-bold text-yellow-300">professional grooming and training sessions</span> to enhance stage presence.</li>
+                      <li><span className="font-bold text-pink-400">•</span> All participating models will be <span className="font-bold text-yellow-300">featured on our official social media</span> platforms.</li>
+                      <li><span className="font-bold text-pink-400">•</span> <span className="font-bold text-yellow-300">High-quality photo and video coverage</span> for personal and professional use.</li>
+                      <li><span className="font-bold text-pink-400">•</span> A golden opportunity to <span className="font-bold text-yellow-300">kickstart or grow your modeling career</span>.</li>
+                      <li><span className="font-bold text-pink-400">•</span> Get noticed by <span className="font-bold text-yellow-300">fashion designers, makeup artists, and event organizers</span>.</li>
+                      <li><span className="font-bold text-pink-400">•</span> Stand a chance to be selected for <span className="font-bold text-yellow-300">brand shoots, future shows, and campaigns</span>.</li>
+                      <li><span className="font-bold text-pink-400">•</span> Portfolio boost with <span className="font-bold text-yellow-300">professional event coverage</span>.</li>
+                      <li><span className="font-bold text-pink-400">•</span> Gain <span className="font-bold text-yellow-300">confidence, recognition, and exposure</span> on a grand stage.</li>
+                      <li><span className="font-bold text-pink-400">•</span> <span className="italic text-pink-300">Step into the spotlight and let your talent shine!</span></li>
                     </ul>
                   </div>
-                  <div className="relative mt-6 text-center">
-                    <div className="text-black font-bold text-md px-6 py-4 rounded-xl bg-yellow-400 border-4 border-black rotate-[2deg] shadow-lg">
-                      Hurry up<br />Registration Fee: ₹5000/-
-                    </div>
-                  </div>
-                </>
               ) : (
-                <>
                   <div>
-                    <h3 className="text-cyan-400 text-2xl font-bold mb-2">Make-up for Warriors</h3>
-                    <p className="text-white text-lg mb-4">Creating Heroes Through Prosthetic Art</p>
-                    <ul className="italic text-sm text-gray-300 space-y-1 mb-4">
-                      <li>“Best Military Wound – Realistic Prosthetics”</li>
-                      <li>“From Latex to Legacy – Tribute Through Art”</li>
-                      <li>“Painted Pain, Real Valor – Soldier’s Story in Layers”</li>
-                    </ul>
-                    <h4 className="text-cyan-400 font-semibold mb-2">Benefits:</h4>
-                    <ul className="list-disc list-inside text-sm text-white space-y-1">
-                      <li>Certification of Achievement</li>
-                      <li>Trophy & Recognition</li>
-                      <li>Stage Opportunity</li>
-                      <li>Media Coverage</li>
-                      <li>Brand Promotion</li>
-                    </ul>
-                    <h4 className="text-cyan-300 mt-4 font-semibold mb-2">Additional Benefits:</h4>
-                    <ul className="list-disc list-inside text-sm text-white space-y-1">
-                      <li>Social Media Monetization Guidance</li>
-                      <li>Opportunities in Movies, Ads & Shoots</li>
+                    <h3 className="text-cyan-400 text-2xl font-bold mb-2">Makeup & Models Registration Benefits</h3>
+                    <ul className="list-none text-white space-y-3 text-sm">
+                      <li><span className="font-bold text-cyan-300">•</span> Participating makeup artists will receive a <span className="font-bold text-yellow-300">Participation Certificate</span>, <span className="font-bold text-yellow-300">Portfolio Coverage</span>, and exclusive <span className="font-bold text-yellow-300">Collaboration Opportunities</span>.</li>
+                      <li><span className="font-bold text-cyan-300">•</span> These benefits help artists build a stronger professional profile and gain more visibility in the industry.</li>
+                      <li><span className="font-bold text-cyan-300">•</span> From our previous events, many artists have received offers and new projects post participation.</li>
+                      <li><span className="font-bold text-cyan-300">•</span> Your work will be professionally captured and added to your portfolio, enhancing your credibility.</li>
+                      <li><span className="font-bold text-cyan-300">•</span> It's an ideal stage to network with models, designers, and industry experts.</li>
+                      <li><span className="font-bold text-cyan-300">•</span> You'll be featured in our event promotions and highlights.</li>
+                      <li><span className="font-bold text-cyan-300">•</span> Our team ensures your talent gets the recognition it deserves.</li>
+                      <li><span className="font-bold text-cyan-300">•</span> This exposure opens the door to freelance gigs, agency tie-ups, and brand shoots.</li>
+                      <li><span className="font-bold text-cyan-300">•</span> You'll also be considered for future events and collaborations by our partner studios.</li>
+                      <li><span className="font-bold text-cyan-300">•</span> <span className="italic text-cyan-200">Be part of a celebration where your art is showcased and celebrated!</span></li>
                     </ul>
                   </div>
-                  <div className="relative mt-6 text-center">
-                    <div className="text-black font-bold text-md px-6 py-4 rounded-xl bg-yellow-400 border-4 border-black rotate-[2deg] shadow-lg">
-                      Hurry up<br />Registration Fee: ₹5000/-
-                    </div>
-                  </div>
-                </>
               )}
             </div>
           </div>
