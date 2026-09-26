@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# React Router (BrowserRouter) needs every path served the SPA shell
+# so deep links like /gallery resolve on a full page load.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
